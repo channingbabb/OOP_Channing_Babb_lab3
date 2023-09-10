@@ -9,8 +9,16 @@ package Channing_Babb_lab3.dicebag;
 //Additionally, have an ‘Armageddon” button that rolls all the dice and
 // provides a sum.
 
-public class DiceBagGUI {
+import javax.swing.*;
+import java.awt.*;
 
+public class DiceBagGUI {
+    DiceBag diceBag = new DiceBag();
+
+
+    static JFrame frame = new JFrame("DiceBag");
+    static JPanel panel = new JPanel();
+    static JLabel label = new JLabel();
     // create JFrame
     // create JPanel
     // create JLabel
@@ -25,6 +33,29 @@ public class DiceBagGUI {
 
     // create constructor
     public DiceBagGUI() {
+        // set the size of the frame
+        frame.setSize(600, 600);
+        // set the frame to close on exit
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // set the frame to be visible
+        frame.setVisible(true);
+        // set the layout of the panel
+        panel.setLayout(new GridLayout(3, 4));
+        // add the panel to the frame
+        frame.add(panel);
+        // add the label to the panel
+        panel.add(label);
+
+        // create buttons 4, 6, 8, 10, 12, 20
+        for (int i = 4; i <= 20; i += 2) {
+            final JButton button = new JButton(Integer.toString(i));
+            panel.add(button);
+            button.addActionListener(e -> {
+                Die die = new Die(Integer.parseInt(button.getText()));
+                diceBag.addDie(die);
+                label.setText(diceBag.toString());
+            });
+        }
 
     }
 

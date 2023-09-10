@@ -7,18 +7,24 @@ public class NumberDisplay {
 
     }
 
-
-
     public String evener() {
         double number = Double.parseDouble(this.number);
         if (number % 2 != 0) {
             number = number + 1;
         }
-        // “round” the number to the closet even integer
-        number = number / 2;
+        // find the closest even integer
+        number = Math.round(number);
+
+        // if only 0 after the decimal, convert to int
+        if (number % 1 == 0) {
+            int numberInt = (int) number;
+            this.number = String.valueOf(numberInt);
+            return String.valueOf(numberInt);
+        }
+
+        // convert the number to a string
         this.number = String.valueOf(number);
-
-
+        // return the number
         return String.valueOf(number);
     }
 
@@ -29,16 +35,16 @@ public class NumberDisplay {
 
     // append number to itself
     public String append(String number) {
-        if (this.number == "0" && number != "." && number != "0") {
-            this.number = number;
-            return number;
-        } else if (this.number == "0" && number == "0") {
-            this.number = "0";
+        if (this.number.trim().equals("0") && number.trim().equals("0")) {
             return this.number;
-        }
-
-        if (number == ".") {
-            if (this.number.contains(".") == true) {
+        } else if (this.number.trim().equals("0") && !number.trim().equals("0") && !number.equals(".")) {
+            this.number = number;
+            return this.number;
+        } else if (this.number.equals("0") && number.equals(".")) {
+            this.number = "0.";
+            return this.number;
+        } else if (number.equals(".")) {
+            if (this.number.contains(".")) {
                 return this.number;
             } else {
                 String numberString = this.number;

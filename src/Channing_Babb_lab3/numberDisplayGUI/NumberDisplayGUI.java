@@ -46,6 +46,7 @@ public class NumberDisplayGUI {
         panel.add(label);
         panel.add(spacer2);
         panel.add(spacer3);
+        label.setText(numberDisplay.number);
 
 
         // create buttons 0-9
@@ -55,7 +56,7 @@ public class NumberDisplayGUI {
             button.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    String number = numberDisplay.append(button.getText());
+                    String number = numberDisplay.append(String.valueOf(button.getText()));
                     label.setText(number);
                 }
             });
@@ -81,7 +82,7 @@ public class NumberDisplayGUI {
             public void actionPerformed(ActionEvent e) {
                 // set the text of the label to the text of the button
                 numberDisplay.clear();
-                label.setText("");
+                label.setText(numberDisplay.number);
             }
         });
 
