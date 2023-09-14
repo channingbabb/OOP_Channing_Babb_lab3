@@ -45,6 +45,12 @@ public class Card {
 
     }
 
+    public String getImage() {
+        String suit = this.getSuit().toLowerCase();
+        String value = this.getValue().toLowerCase().split(" ")[1]; // get everything after space
+        return "src/Channing_Babb_lab3/hand/cards/"+value+"_of_"+suit+".png";
+    }
+
 
     public String toString() {
 //        System.out.println(this.value + " of " + this.getSuit());

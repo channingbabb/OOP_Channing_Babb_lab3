@@ -26,6 +26,14 @@ public class Die {
     }
 
     /**
+     * getter for # of sides
+     * @return int
+     */
+    public int getNumberOfSides() {
+        return this.numberOfSides;
+    }
+
+    /**
      * Roll function
      * @return
      */

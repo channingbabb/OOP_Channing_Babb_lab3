@@ -13,49 +13,160 @@ import javax.swing.*;
 import java.awt.*;
 
 public class DiceBagGUI {
+    static final String DICEBAG_IMAGE_PATH = "src/Channing_Babb_lab3/dicebag.jpg";
+
     DiceBag diceBag = new DiceBag();
-
-
     static JFrame frame = new JFrame("DiceBag");
     static JPanel panel = new JPanel();
     static JLabel label = new JLabel();
-    // create JFrame
-    // create JPanel
-    // create JLabel
-    // create JButton
-    // create JTextField
-    // create JList
-    // create JSpinner
-    // create JSlider
-    // create JCheckBox
 
 
+    static JLabel fours = new JLabel();
+    static JLabel sixes = new JLabel();
+    static JLabel eights = new JLabel();
+    static JLabel tens = new JLabel();
+    static JLabel twelves = new JLabel();
+    static JLabel twenties = new JLabel();
+
+    public void createButtons() {
+        // create buttons 4, 6, 8, 10, 12, 20
+        for (int i = 4; i <= 20; i += 2) {
+            if (i == 14 || i == 16 || i == 18) {
+                continue;
+            }
+            final JButton button = new JButton(Integer.toString(i));
+            panel.add(button);
+            int finalI = i;
+            button.addActionListener(e -> {
+                getNumDice();
+                switch (finalI) {
+                    case 4:
+                        String result = diceBag.rollFours(4);
+                        label.setText(result);
+                        break;
+                    case 6:
+                        result = diceBag.rollSixes(6);
+                        label.setText(result);
+                        break;
+                    case 8:
+                        result = diceBag.rollEights(8);
+                        label.setText(result);
+                        break;
+                    case 10:
+                        result = diceBag.rollTens(10);
+                        label.setText(result);
+                        break;
+                    case 12:
+                        result = diceBag.rollTwelves(12);
+                        label.setText(result);
+                        break;
+                    case 20:
+                        result = diceBag.rollTwenties(20);
+                        label.setText(result);
+                        break;
+                }
+            });
+        }
+
+        // Armageddon button
+        final JButton button = new JButton("Armageddon");
+        panel.add(button);
+        button.addActionListener(e -> {
+//            Die die = new Die(Integer.parseInt(button.getText()));
+//            diceBag.addDie(die);
+            int result = diceBag.armageddon();
+            label.setText("Sum of armageddon: " + result + "\n");
+        });
+    }
+
+    // dicebag image function
+    public void createDiceBagImage() {
+        // set size of image
+        // https://stackoverflow.com/a/32886146
+        // create new label that is an image icon for dicebag.jpg
+        ImageIcon imageIcon = new ImageIcon(new ImageIcon(DICEBAG_IMAGE_PATH).getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+        JLabel diceBag = new JLabel(imageIcon);
+        panel.add(diceBag);
+    }
+
+    // get # of dice
+    public void getNumDice() {
+        int foursCounter = 0;
+        int sixesCounter = 0;
+        int eightsCounter = 0;
+        int tensCounter = 0;
+        int twelvesCounter = 0;
+        int twentiesCounter = 0;
+
+        // foreach in dicebag
+        for (int i=0; i<diceBag.getDiceBag().size(); i++) {
+            // if die is 4 sided
+            Die die = (Die) diceBag.getDiceBag().get(i);
+            if (die.getNumberOfSides() == 4) {
+                // increment counter
+                foursCounter++;
+            }
+            // if die is 6 sided
+            if (die.getNumberOfSides() == 6) {
+                // increment counter
+                sixesCounter++;
+            }
+            // if die is 8 sided
+            if (die.getNumberOfSides() == 8) {
+                // increment counter
+                eightsCounter++;
+            }
+            // if die is 10 sided
+            if (die.getNumberOfSides() == 10) {
+                // increment counter
+                tensCounter++;
+            }
+            // if die is 12 sided
+            if (die.getNumberOfSides() == 12) {
+                // increment counter
+                twelvesCounter++;
+            }
+            // if die is 20 sided
+            if (die.getNumberOfSides() == 20) {
+                // increment counter
+                twentiesCounter++;
+            }
+        }
+        // append to string builder
+
+        fours.setText("Number of 4 sided dice: " + foursCounter + "\n");
+        sixes.setText("Number of 6 sided dice: " + sixesCounter + "\n");
+        eights.setText("Number of 8 sided dice: " + eightsCounter + "\n");
+        tens.setText("Number of 10 sided dice: " + tensCounter + "\n");
+        twelves.setText("Number of 12 sided dice: " + twelvesCounter + "\n");
+        twenties.setText("Number of 20 sided dice: " + twentiesCounter + "\n");
+    }
 
     // create constructor
     public DiceBagGUI() {
+        createButtons();
+        getNumDice();
+        // set to different layout
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        // create dicebag image
+        createDiceBagImage();
         // set the size of the frame
         frame.setSize(600, 600);
         // set the frame to close on exit
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // set the frame to be visible
-        frame.setVisible(true);
-        // set the layout of the panel
-        panel.setLayout(new GridLayout(3, 4));
         // add the panel to the frame
         frame.add(panel);
         // add the label to the panel
         panel.add(label);
+        panel.add(fours);
+        panel.add(sixes);
+        panel.add(eights);
+        panel.add(tens);
+        panel.add(twelves);
+        panel.add(twenties);
+        // set the frame to be visible
+        frame.setVisible(true);
 
-        // create buttons 4, 6, 8, 10, 12, 20
-        for (int i = 4; i <= 20; i += 2) {
-            final JButton button = new JButton(Integer.toString(i));
-            panel.add(button);
-            button.addActionListener(e -> {
-                Die die = new Die(Integer.parseInt(button.getText()));
-                diceBag.addDie(die);
-                label.setText(diceBag.toString());
-            });
-        }
 
     }
 

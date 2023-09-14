@@ -24,6 +24,14 @@ public class Hand {
     }
 
     /**
+     * Get hand
+     * @return
+     */
+    public ArrayList<Card> getHand() {
+        return hand;
+    }
+
+    /**
      * Add card to hand
      * @param card
      */

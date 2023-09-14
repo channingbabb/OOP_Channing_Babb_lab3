@@ -28,6 +28,14 @@ public class DiceBag {
     }
 
     /**
+     * getter for dicebag
+     * @return DiceBag
+     */
+    public ArrayList<Object> getDiceBag() {
+        return this.diceBag;
+    }
+
+    /**
      * Roll fours
      *
      * @param numberOfDice

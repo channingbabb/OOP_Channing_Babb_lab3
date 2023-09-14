@@ -31,14 +31,6 @@ public class NumberDisplayGUI {
     public NumberDisplayGUI() {
 
 
-        // set the size of the frame
-        frame.setSize(600, 600);
-        // set the frame to close on exit
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // set the frame to be visible
-        frame.setVisible(true);
-        // set the layout of the panel
-        panel.setLayout(new GridLayout(3, 4));
         // add the panel to the frame
         frame.add(panel);
         panel.add(spacer1);
@@ -47,6 +39,16 @@ public class NumberDisplayGUI {
         panel.add(spacer2);
         panel.add(spacer3);
         label.setText(numberDisplay.number);
+
+
+        // set the size of the frame
+        frame.setSize(600, 600);
+        // set the frame to close on exit
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // set the frame to be visible
+        frame.setVisible(true);
+        // set the layout of the panel
+        panel.setLayout(new GridLayout(3, 4));
 
 
         // create buttons 0-9
