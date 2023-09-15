@@ -24,6 +24,13 @@ public class Hand {
     }
 
     /**
+     * Reset hand to empty
+     */
+    public void resetHand() {
+        this.hand = new ArrayList<Card>();
+    }
+
+    /**
      * Get hand
      * @return
      */

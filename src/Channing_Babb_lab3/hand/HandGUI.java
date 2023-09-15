@@ -17,6 +17,9 @@ public class HandGUI {
     // create a JPanel
     static JPanel panel = new JPanel();
     static JPanel cardPanel = new JPanel();
+    static JPanel masterPanel = new JPanel();
+    static JLabel[] images = new JLabel[14];
+
 
     public void createButtons() {
         // create new button to shuffle the deck
@@ -44,29 +47,56 @@ public class HandGUI {
             Collections.addAll(cardsList, cards);
             this.hand.addCards(cardsList);
             // loop through hand and display image for each card
+            int i = 0;
             for (Card card : hand.getHand()) {
+//                images[i] = new JLabel();
                 System.out.println(card.getImage());
                 // create a new image icon
                 ImageIcon imageIcon = new ImageIcon(new ImageIcon(card.getImage()).getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
-                // create a new label
-                JLabel label = new JLabel();
                 // set the label to the image icon
-                label.setIcon(imageIcon);
+                images[i].setIcon(imageIcon);
                 // add the label to the panel
-                cardPanel.add(label);
+//                cardPanel.add(images[i]);
+                i++;
+            }
+            cardPanel.repaint();
+//            // revalidate the panel
+//            cardPanel.revalidate();
+        });
+
+        // reset deck button
+        JButton resetButton = new JButton("Reset Deck");
+        // add the button to the panel
+        panel.add(resetButton);
+        // add an action listener to the button
+        resetButton.addActionListener(e -> {
+            // reset the deck
+            this.deck.renewDeck();
+            this.hand.resetHand();
+            for (int i = 0; i < images.length; i++) {
+                images[i].setIcon(null);
             }
         });
+
 
     }
 
     // display the GUI
     public HandGUI() {
-        // add the panel to the frame
-        frame.add(panel);
-        createButtons();
+        // instantiate the images array
+        for (int i = 0; i < images.length; i++) {
+            images[i] = new JLabel();
+            cardPanel.add(images[i]);
+        }
+
         // set the layout of the panel
-        cardPanel.setLayout(new BoxLayout(cardPanel, BoxLayout.X_AXIS));
+        cardPanel.setLayout(new GridLayout(2, 7));
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        // add the panel to the frame
+        masterPanel.add(panel);
+        masterPanel.add(cardPanel);
+        frame.add(masterPanel);
+        createButtons();
 
         // set the size of the frame
         frame.setSize(600, 600);

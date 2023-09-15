@@ -14,11 +14,13 @@ import java.awt.*;
 
 public class DiceBagGUI {
     static final String DICEBAG_IMAGE_PATH = "src/Channing_Babb_lab3/dicebag.jpg";
-
+    int dice[];
     DiceBag diceBag = new DiceBag();
     static JFrame frame = new JFrame("DiceBag");
     static JPanel panel = new JPanel();
     static JLabel label = new JLabel();
+    static JPanel dicePanel = new JPanel();
+    static JPanel masterPanel = new JPanel();
 
 
     static JLabel fours = new JLabel();
@@ -38,33 +40,36 @@ public class DiceBagGUI {
             panel.add(button);
             int finalI = i;
             button.addActionListener(e -> {
-                getNumDice();
                 switch (finalI) {
                     case 4:
-                        String result = diceBag.rollFours(4);
-                        label.setText(result);
+                        int result = diceBag.rollFours(1);
+                        label.setText("You rolled a " + result + " with a " + finalI + " sided die.");
+                        // create new dice in the dice panel
+                        dice[0] = result;
                         break;
                     case 6:
-                        result = diceBag.rollSixes(6);
-                        label.setText(result);
+                        result = diceBag.rollSixes(1);
+                        label.setText("You rolled a " + result + " with a " + finalI + " sided die.");
                         break;
                     case 8:
-                        result = diceBag.rollEights(8);
-                        label.setText(result);
+                        result = diceBag.rollEights(1);
+                        label.setText("You rolled a " + result + " with a " + finalI + " sided die.");
                         break;
                     case 10:
-                        result = diceBag.rollTens(10);
-                        label.setText(result);
+                        result = diceBag.rollTens(1);
+                        label.setText("You rolled a " + result + " with a " + finalI + " sided die.");
                         break;
                     case 12:
-                        result = diceBag.rollTwelves(12);
-                        label.setText(result);
+                        result = diceBag.rollTwelves(1);
+                        label.setText("You rolled a " + result + " with a " + finalI + " sided die.");
                         break;
                     case 20:
-                        result = diceBag.rollTwenties(20);
-                        label.setText(result);
+                        result = diceBag.rollTwenties(1);
+                        label.setText("You rolled a " + result + " with a " + finalI + " sided die.");
                         break;
                 }
+
+                getNumDice();
             });
         }
 
@@ -147,6 +152,8 @@ public class DiceBagGUI {
         createButtons();
         getNumDice();
         // set to different layout
+        masterPanel.add(panel);
+        masterPanel.add(dicePanel);
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         // create dicebag image
         createDiceBagImage();
@@ -155,7 +162,6 @@ public class DiceBagGUI {
         // set the frame to close on exit
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // add the panel to the frame
-        frame.add(panel);
         // add the label to the panel
         panel.add(label);
         panel.add(fours);
@@ -164,11 +170,8 @@ public class DiceBagGUI {
         panel.add(tens);
         panel.add(twelves);
         panel.add(twenties);
+        frame.add(masterPanel);
         // set the frame to be visible
         frame.setVisible(true);
-
-
     }
-
-
 }

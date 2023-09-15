@@ -41,7 +41,7 @@ public class DiceBag {
      * @param numberOfDice
      * @return
      */
-    public String rollFours(int numberOfDice) {
+    public int rollFours(int numberOfDice) {
         int sumOfDice = 0;
         int shownIteration;
         Channing_Babb_lab3.dicebag.Die die;
@@ -57,7 +57,7 @@ public class DiceBag {
             System.out.println("Die " + shownIteration + ": " + die.getFace());
         }
 
-        return "Sum of dice: " + sumOfDice + "\n";
+        return sumOfDice;
     }
 
     /**
@@ -66,7 +66,7 @@ public class DiceBag {
      * @param numberOfDice
      * @return
      */
-    public String rollSixes(int numberOfDice) {
+    public int rollSixes(int numberOfDice) {
         int sumOfDice = 0;
         int shownIteration;
         Channing_Babb_lab3.dicebag.Die die;
@@ -82,7 +82,7 @@ public class DiceBag {
             System.out.println("Die " + shownIteration + ": " + die.getFace());
         }
 
-        return "Sum of dice: " + sumOfDice + "\n";
+        return sumOfDice;
 
     }
 
@@ -92,7 +92,7 @@ public class DiceBag {
      * @param numberOfDice
      * @return
      */
-    public String rollEights(int numberOfDice) {
+    public int rollEights(int numberOfDice) {
         int sumOfDice = 0;
         int shownIteration;
         Channing_Babb_lab3.dicebag.Die die;
@@ -108,7 +108,7 @@ public class DiceBag {
             System.out.println("Die " + shownIteration + ": " + die.getFace());
         }
 
-        return "Sum of dice: " + sumOfDice + "\n";
+        return sumOfDice;
     }
 
     /**
@@ -117,7 +117,7 @@ public class DiceBag {
      * @param numberOfDice
      * @return
      */
-    public String rollTens(int numberOfDice) {
+    public int rollTens(int numberOfDice) {
         int sumOfDice = 0;
         int shownIteration;
         Channing_Babb_lab3.dicebag.Die die;
@@ -133,7 +133,7 @@ public class DiceBag {
             System.out.println("Die " + shownIteration + ": " + die.getFace());
         }
 
-        return "Sum of dice: " + sumOfDice + "\n";
+        return sumOfDice;
 
     }
 
@@ -143,7 +143,7 @@ public class DiceBag {
      * @param numberOfDice
      * @return
      */
-    public String rollTwelves(int numberOfDice) {
+    public int rollTwelves(int numberOfDice) {
         int sumOfDice = 0;
         int shownIteration;
         Channing_Babb_lab3.dicebag.Die die;
@@ -159,7 +159,7 @@ public class DiceBag {
             System.out.println("Die " + shownIteration + ": " + die.getFace());
         }
 
-        return "Sum of dice: " + sumOfDice + "\n";
+        return sumOfDice;
 
     }
 
@@ -169,7 +169,7 @@ public class DiceBag {
      * @param numberOfDice
      * @return
      */
-    public String rollTwenties(int numberOfDice) {
+    public int rollTwenties(int numberOfDice) {
         int sumOfDice = 0;
         int shownIteration;
         Channing_Babb_lab3.dicebag.Die die;
@@ -185,7 +185,7 @@ public class DiceBag {
             System.out.println("Die " + shownIteration + ": " + die.getFace());
         }
 
-        return "Sum of dice: " + sumOfDice + "\n";
+        return sumOfDice;
 
     }
 
