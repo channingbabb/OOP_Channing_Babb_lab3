@@ -26,7 +26,7 @@ public class CardGUI extends JLabel {
         // create a new image icon
         ImageIcon imageIcon = new ImageIcon(
                 new ImageIcon(card.getImage()).getImage().getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_DEFAULT));
-        // set the label to the image icon
+        // set the label to the image ico
         this.setIcon(imageIcon);
     }
 
