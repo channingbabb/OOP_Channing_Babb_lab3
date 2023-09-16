@@ -1,13 +1,17 @@
 package Channing_Babb_lab3.hand;
-// https://code.google.com/archive/p/vector-playing-cards/
+// https://opengameart.org/sites/default/files/Playing%20Cards.zip
 // these are being used for the deck
+// shared them with the class so expect to see them reused, it was difficult finding it.
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import javax.swing.*;
 
+/**
+ * HandGUI
+ */
 public class HandGUI {
     Hand hand = new Hand();
     Deck deck = new Deck();
@@ -18,9 +22,13 @@ public class HandGUI {
     static JPanel panel = new JPanel();
     static JPanel cardPanel = new JPanel();
     static JPanel masterPanel = new JPanel();
-    static JLabel[] images = new JLabel[14];
+    static CardGUI[] images = new CardGUI[14];
 
 
+    /**
+     * createButtons
+     * This function creates the buttons for the GUI
+     */
     public void createButtons() {
         // create new button to shuffle the deck
         JButton shuffleButton = new JButton("Shuffle");
@@ -39,29 +47,24 @@ public class HandGUI {
         panel.add(dealButton);
         // add an action listener to the button
         dealButton.addActionListener(e -> {
-            // deal 5 cards to the hand
-            Card[] cards = this.deck.deal(13);
-            // create new arraylist and add all the cards to the arraylist
-            // just proving that it can be done
+            // deal cards to the hand
+            this.hand.resetHand();
+            for (int i = 0; i < images.length; i++) {
+                cardPanel.remove(images[i]);
+            }
+            Card[] cards = this.deck.deal(14);
             ArrayList<Card> cardsList = new ArrayList<Card>();
             Collections.addAll(cardsList, cards);
             this.hand.addCards(cardsList);
             // loop through hand and display image for each card
             int i = 0;
             for (Card card : hand.getHand()) {
-//                images[i] = new JLabel();
-                System.out.println(card.getImage());
-                // create a new image icon
-                ImageIcon imageIcon = new ImageIcon(new ImageIcon(card.getImage()).getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
-                // set the label to the image icon
-                images[i].setIcon(imageIcon);
-                // add the label to the panel
-//                cardPanel.add(images[i]);
+                images[i] = new CardGUI(card);
+                cardPanel.add(images[i]);
                 i++;
             }
-            cardPanel.repaint();
-//            // revalidate the panel
-//            cardPanel.revalidate();
+            cardPanel.repaint(); // repaint the panel
+            frame.pack(); // resize the frame to fit all the components
         });
 
         // reset deck button
@@ -74,19 +77,24 @@ public class HandGUI {
             this.deck.renewDeck();
             this.hand.resetHand();
             for (int i = 0; i < images.length; i++) {
-                images[i].setIcon(null);
+                // fix to visually remove
+                images[i].setIcon(new ImageIcon());
+                cardPanel.remove(images[i]);
             }
         });
 
 
     }
 
-    // display the GUI
+    /**
+     * HandGUI
+     * This is the constructor for the HandGUI class
+     */
     public HandGUI() {
         // instantiate the images array
         for (int i = 0; i < images.length; i++) {
-            images[i] = new JLabel();
-            cardPanel.add(images[i]);
+            images[i] = new CardGUI(new Card(0, 0));
+//            cardPanel.add(images[i]);
         }
 
         // set the layout of the panel

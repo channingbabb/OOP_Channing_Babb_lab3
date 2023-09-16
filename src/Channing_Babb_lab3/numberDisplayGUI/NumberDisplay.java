@@ -1,12 +1,25 @@
 package Channing_Babb_lab3.numberDisplayGUI;
 
+/**
+ * NumberDisplay.java
+ * logic for the NumberDisplayGUI.java
+ */
 public class NumberDisplay {
     String number = "0";
 
+    /**
+     * NumberDisplay
+     * constructor for the NumberDisplay class
+     */
     public NumberDisplay() {
 
     }
 
+    /**
+     * evener
+     * if the number is odd, add 1
+     * @return
+     */
     public String evener() {
         double number = Double.parseDouble(this.number);
         if (number % 2 != 0) {
@@ -28,35 +41,38 @@ public class NumberDisplay {
         return String.valueOf(number);
     }
 
+    /**
+     * clear
+     * sets the number to 0
+     * @return
+     */
     public String clear() {
         this.number = "0";
         return this.number;
     }
 
-    // append number to itself
+    /**
+     * append
+     * @param number
+     * @return
+     */
     public String append(String number) {
-        if (this.number.trim().equals("0") && number.trim().equals("0")) {
-            return this.number;
-        } else if (this.number.trim().equals("0") && !number.trim().equals("0") && !number.equals(".")) {
-            this.number = number;
-            return this.number;
-        } else if (this.number.equals("0") && number.equals(".")) {
-            this.number = "0.";
-            return this.number;
-        } else if (number.equals(".")) {
-            if (this.number.contains(".")) {
-                return this.number;
+        // if the number is 0, replace it with the new number
+        if (this.number.equals("0")) {
+            if (number.equals(".")) { // if the number is a decimal
+                this.number = "0."; // set to 0. (we don't want 0.00.00, etc.)
             } else {
-                String numberString = this.number;
-                numberString += number;
-                this.number = numberString;
-                return numberString;
+                this.number = number; // else set to the new number
             }
+        } else if (number.equals(".")) { // if the number is a decimal
+            if (this.number.contains(".")) { // if the number already contains a decimal
+                return this.number; // return the number
+            } else {
+                this.number += "."; // else, add the decimal
+            }
+        } else {
+            this.number += number; // if all else, add the number
         }
-
-        // append number to itself
-        this.number += number;
-        // return this.number
-        return this.number;
+        return this.number; // return
     }
 }

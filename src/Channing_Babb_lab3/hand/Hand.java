@@ -14,7 +14,6 @@ public class Hand {
      * @return
      */
     public String displayHand() {
-        System.out.println("Hand size is " + hand.size());
         // string builder instead of += for performance
         StringBuilder handString = new StringBuilder();
         for (Card card : hand) {

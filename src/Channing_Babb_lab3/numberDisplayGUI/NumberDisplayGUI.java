@@ -1,14 +1,19 @@
 package Channing_Babb_lab3.numberDisplayGUI;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-// Create an application with a GUI that displays a numeric entry pad.  You should have buttons for each digit, a button for a decimal, and a button to Clear and an “Evener”.  There should also be a “display” which shows the digits (or decimal) as they are pushed.  The Clear button should clear the display of any digits.  The “Evener” button should “round” the number to the closet even integer.  If the number displayed is an odd integer (i.e. 50% of the way between the two nearest even integers), then round up. (33 points)
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
+/**
+ * NumberDisplayGUI
+ */
 public class NumberDisplayGUI {
-    NumberDisplay numberDisplay = new NumberDisplay();
+    static NumberDisplay numberDisplay = new NumberDisplay();
     // create a JFrame
     static JFrame frame = new JFrame("Number Display GUI");
     // create a JPanel
@@ -20,14 +25,17 @@ public class NumberDisplayGUI {
     static JLabel spacer2 = new JLabel();
     static JLabel spacer3 = new JLabel();
     // create a JButton for the decimal
-    static JButton decimal = new JButton(".");
+    static DecimalButton decimal = new DecimalButton(numberDisplay, label);
     // create a JButton for the clear button
-    static JButton clear = new JButton("Clear");
+    static ClearButton clear = new ClearButton(numberDisplay, label);
     // create a JButton for the evener button
-    static JButton evener = new JButton("Evener");
+    static EvenerButton evener = new EvenerButton(numberDisplay, label);
 
 
-    // display the GUI
+    /**
+     * NumberDisplayGUI
+     * This is the constructor for the NumberDisplayGUI class
+     */
     public NumberDisplayGUI() {
 
 
@@ -45,20 +53,16 @@ public class NumberDisplayGUI {
         frame.setSize(600, 600);
         // set the frame to close on exit
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // set the frame to be visible
-        frame.setVisible(true);
         // set the layout of the panel
         panel.setLayout(new GridLayout(3, 4));
-
-
         // create buttons 0-9
         for (int i = 0; i < 10; i++) {
             final JButton button = new JButton(Integer.toString(i));
             panel.add(button);
-            button.addActionListener(new ActionListener() {
+            button.addActionListener(new ActionListener() { // action listener for the button
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    String number = numberDisplay.append(String.valueOf(button.getText()));
+                    String number = numberDisplay.append(String.valueOf(button.getText())); // append the text of the button to the numberDisplay
                     label.setText(number);
                 }
             });
@@ -96,6 +100,10 @@ public class NumberDisplayGUI {
                 label.setText(number);
             }
         });
+
+
+        // set the frame to be visible
+        frame.setVisible(true);
 
 
     }

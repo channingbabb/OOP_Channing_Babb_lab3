@@ -5,7 +5,9 @@ package Channing_Babb_lab3.dicebag;
  * This class holds the functions for the die
  */
 public class Die {
+    // default number of sides
     private final int DEFAULT_SIDES = 6;
+    // number of sides
     private int numberOfSides;
     private int face;
 
